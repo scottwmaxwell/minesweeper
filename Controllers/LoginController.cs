@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Minesweeper.Models;
+using Minesweeper.Services;
 
 namespace Minesweeper.Controllers
 {
@@ -7,6 +9,20 @@ namespace Minesweeper.Controllers
         public IActionResult Index()
         {
             return View();
+        }
+
+        public IActionResult ProcessLogin(UserModel user)
+        {
+            SecurityService securityService = new SecurityService();
+
+            if (securityService.IsValid(user))
+            {
+                return View("LoginSuccess", user);
+            }
+            else
+            {
+                return View("LoginFailure", user);
+            }
         }
     }
 }
