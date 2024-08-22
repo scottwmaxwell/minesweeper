@@ -1,22 +1,22 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Miguel\\source\\repos\\Minesweeper\\",
+  "WorkspaceRootPath": "C:\\Users\\migg_\\source\\repos\\scottwmaxwell\\minesweeper\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{E7950EC0-0E54-4E19-8DF4-466F9DFF5541}|Minesweeper.csproj|c:\\users\\miguel\\source\\repos\\minesweeper\\services\\securityservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{E7950EC0-0E54-4E19-8DF4-466F9DFF5541}|Minesweeper.csproj|c:\\users\\migg_\\source\\repos\\scottwmaxwell\\minesweeper\\services\\securityservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E7950EC0-0E54-4E19-8DF4-466F9DFF5541}|Minesweeper.csproj|solutionrelative:services\\securityservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E7950EC0-0E54-4E19-8DF4-466F9DFF5541}|Minesweeper.csproj|c:\\users\\miguel\\source\\repos\\minesweeper\\models\\usermodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{E7950EC0-0E54-4E19-8DF4-466F9DFF5541}|Minesweeper.csproj|c:\\users\\migg_\\source\\repos\\scottwmaxwell\\minesweeper\\models\\usermodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E7950EC0-0E54-4E19-8DF4-466F9DFF5541}|Minesweeper.csproj|solutionrelative:models\\usermodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E7950EC0-0E54-4E19-8DF4-466F9DFF5541}|Minesweeper.csproj|c:\\users\\miguel\\source\\repos\\minesweeper\\controllers\\logincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E7950EC0-0E54-4E19-8DF4-466F9DFF5541}|Minesweeper.csproj|solutionrelative:controllers\\logincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E7950EC0-0E54-4E19-8DF4-466F9DFF5541}|Minesweeper.csproj|c:\\users\\migg_\\source\\repos\\scottwmaxwell\\minesweeper\\views\\login\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E7950EC0-0E54-4E19-8DF4-466F9DFF5541}|Minesweeper.csproj|solutionrelative:views\\login\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E7950EC0-0E54-4E19-8DF4-466F9DFF5541}|Minesweeper.csproj|c:\\users\\miguel\\source\\repos\\minesweeper\\views\\login\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{E7950EC0-0E54-4E19-8DF4-466F9DFF5541}|Minesweeper.csproj|solutionrelative:views\\login\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{E7950EC0-0E54-4E19-8DF4-466F9DFF5541}|Minesweeper.csproj|c:\\users\\migg_\\source\\repos\\scottwmaxwell\\minesweeper\\controllers\\logincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E7950EC0-0E54-4E19-8DF4-466F9DFF5541}|Minesweeper.csproj|solutionrelative:controllers\\logincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -32,9 +32,9 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "SecurityService.cs",
-              "DocumentMoniker": "C:\\Users\\Miguel\\source\\repos\\Minesweeper\\Services\\SecurityService.cs",
+              "DocumentMoniker": "C:\\Users\\migg_\\source\\repos\\scottwmaxwell\\minesweeper\\Services\\SecurityService.cs",
               "RelativeDocumentMoniker": "Services\\SecurityService.cs",
-              "ToolTip": "C:\\Users\\Miguel\\source\\repos\\Minesweeper\\Services\\SecurityService.cs",
+              "ToolTip": "C:\\Users\\migg_\\source\\repos\\scottwmaxwell\\minesweeper\\Services\\SecurityService.cs",
               "RelativeToolTip": "Services\\SecurityService.cs",
               "ViewState": "AgIAAAUAAAAAAAAAAAAAwDYAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -45,40 +45,37 @@
               "$type": "Document",
               "DocumentIndex": 1,
               "Title": "UserModel.cs",
-              "DocumentMoniker": "C:\\Users\\Miguel\\source\\repos\\Minesweeper\\Models\\UserModel.cs",
+              "DocumentMoniker": "C:\\Users\\migg_\\source\\repos\\scottwmaxwell\\minesweeper\\Models\\UserModel.cs",
               "RelativeDocumentMoniker": "Models\\UserModel.cs",
-              "ToolTip": "C:\\Users\\Miguel\\source\\repos\\Minesweeper\\Models\\UserModel.cs",
+              "ToolTip": "C:\\Users\\migg_\\source\\repos\\scottwmaxwell\\minesweeper\\Models\\UserModel.cs",
               "RelativeToolTip": "Models\\UserModel.cs",
               "ViewState": "AgIAAAUAAAAAAAAAAAAxwB4AAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-22T15:58:42.35Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\Miguel\\source\\repos\\Minesweeper\\Views\\Login\\Index.cshtml",
-              "RelativeDocumentMoniker": "Views\\Login\\Index.cshtml",
-              "ToolTip": "C:\\Users\\Miguel\\source\\repos\\Minesweeper\\Views\\Login\\Index.cshtml",
-              "RelativeToolTip": "Views\\Login\\Index.cshtml",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAA8AAAA4AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-08-22T15:55:26.403Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-08-22T15:58:42.35Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\migg_\\source\\repos\\scottwmaxwell\\minesweeper\\Views\\Login\\Index.cshtml",
+              "RelativeDocumentMoniker": "Views\\Login\\Index.cshtml",
+              "ToolTip": "C:\\Users\\migg_\\source\\repos\\scottwmaxwell\\minesweeper\\Views\\Login\\Index.cshtml",
+              "RelativeToolTip": "Views\\Login\\Index.cshtml",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAA8AAAA4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-08-22T15:55:26.403Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "LoginController.cs",
-              "DocumentMoniker": "C:\\Users\\Miguel\\source\\repos\\Minesweeper\\Controllers\\LoginController.cs",
+              "DocumentMoniker": "C:\\Users\\migg_\\source\\repos\\scottwmaxwell\\minesweeper\\Controllers\\LoginController.cs",
               "RelativeDocumentMoniker": "Controllers\\LoginController.cs",
-              "ToolTip": "C:\\Users\\Miguel\\source\\repos\\Minesweeper\\Controllers\\LoginController.cs",
+              "ToolTip": "C:\\Users\\migg_\\source\\repos\\scottwmaxwell\\minesweeper\\Controllers\\LoginController.cs",
               "RelativeToolTip": "Controllers\\LoginController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAtAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-22T15:54:30.917Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-08-22T15:54:30.917Z"
             }
           ]
         }
