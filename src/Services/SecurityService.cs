@@ -10,5 +10,10 @@ namespace Minesweeper.Services
         {
             return securityDAO.findUserByNameAndPassword(user);
         }
+
+        public bool Save(UserModel user)
+        {
+            return securityDAO.RegisterUser(user);
+        }
     }
 }
