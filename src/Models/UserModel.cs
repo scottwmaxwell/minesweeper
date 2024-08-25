@@ -36,7 +36,7 @@ namespace Minesweeper.Models
         public string LastName { get; set; }
         
         [DisplayName("Sex")]
-        [Required]
+        [Required(ErrorMessage = "Sex is required.")]
         public string Sex { get; set; }
         
         [DisplayName("Age")]

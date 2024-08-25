@@ -1,6 +1,6 @@
 ﻿@model Minesweeper.Models.UserModel
 
-<h4>UserModel</h4>
+<h4>Register</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -22,6 +22,7 @@
                 <div>
                     @Html.RadioButtonFor(model => model.Sex, Gender.Male) Male
                     @Html.RadioButtonFor(model => model.Sex, Gender.Female) Female
+                    <span asp-validation-for="Sex" class="text-danger"></span>
                 </div>
             </div>
 
