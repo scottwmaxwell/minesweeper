@@ -41,5 +41,25 @@ namespace Minesweeper.Services
             }
             return success;
         }
+
+        public bool RegisterUser(UserModel user)
+        {
+            bool success = false;
+            string sqlStatement = "INSERT INTO dbo.users (USERNAME, PASSWORD) VALUES (@username, @password, @firstname, @lastname, @email, @sex, @age, @state)";
+
+            using(SqlConnection connection = new SqlConnection())
+            {
+                SqlCommand command = new SqlCommand(sqlStatement, connection);
+                command.Parameters.Add("@username", System.Data.SqlDbType.VarChar, 255).Value = user.userName;
+                command.Parameters.Add("@password", System.Data.SqlDbType.VarChar, 255).Value = user.password;
+                command.Parameters.Add("@firstname", System.Data.SqlDbType.VarChar, 255).Value = user.firstName;
+                command.Parameters.Add("@lastname", System.Data.SqlDbType.VarChar, 255).Value = user.lastName;
+                command.Parameters.Add("@email", System.Data.SqlDbType.VarChar, 255).Value = user.email;
+                command.Parameters.Add("@sex", System.Data.SqlDbType.VarChar, 255).Value = user.sex;
+                command.Parameters.Add("@state", System.Data.SqlDbType.VarChar, 255).Value = user.state;
+            }
+
+            return success;
+        }
     }
 }
