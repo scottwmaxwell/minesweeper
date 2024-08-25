@@ -1,15 +1,27 @@
--- Create user table
-create table [dbo].[users] (
-    [id] INT PRIMARY KEY IDENTITY(1,1),
-    [firstName] VARCHAR(255) NOT NULL,
-    [lastName] VARCHAR(255) NOT NULL,
-    [sex] VARCHAR(50) NOT NULL,
-    [age] INT NOT NULL,
-    [state] VARCHAR(100) NOT NULL,
-    [email] VARCHAR(255) NOT NULL,
-    [userName] VARCHAR(255) NOT NULL,
-    [password] VARCHAR(255) NOT NULL
-);
+-- Create DB if it doesn't already exist
+if not exists(select * from sys.databases WHERE name = "minesweeperDB")
+begin
+    create database minesweeper
+end;
+
+-- Switch to the minesweeper database
+use minesweeper;
+
+-- Create user table (if it doesn't exist)
+if not exists (select * from sys.objects where object_id = OBJECT_ID(N'[dbo].[users]') and type in (N'U'))
+begin 
+    create table [dbo].[users] (
+        [id] INT PRIMARY KEY IDENTITY(1,1),
+        [firstName] VARCHAR(255) NOT NULL,
+        [lastName] VARCHAR(255) NOT NULL,
+        [sex] VARCHAR(50) NOT NULL,
+        [age] INT NOT NULL,
+        [state] VARCHAR(100) NOT NULL,
+        [email] VARCHAR(255) NOT NULL,
+        [userName] VARCHAR(255) NOT NULL,
+        [password] VARCHAR(255) NOT NULL
+    );
+end;
 
 -- Add some test data
 insert into users (firstName, lastName, sex, age, state, email, userName, password) values
