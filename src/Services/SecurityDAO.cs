@@ -81,7 +81,7 @@ namespace Minesweeper.Services
         public UserModel getUserByUsername(string username)
         {
             // Assume there is no user
-            UserModel user = null;
+            UserModel? user = null;
 
             // uses prepared statements for security. @username @password are defined below
             string sqlStatement = "SELECT USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, SEX, AGE, STATE FROM dbo.users WHERE USERNAME = @username";
@@ -119,7 +119,7 @@ namespace Minesweeper.Services
                 };
             }
             
-            return user;
+            return user ?? new UserModel();
         }
     }
 }
