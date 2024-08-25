@@ -15,11 +15,9 @@ namespace Minesweeper.Controllers
 
         public IActionResult ProcessLogin(UserModel user)
         {
-            
-            Console.WriteLine("firstname:");
-            Console.WriteLine(user.FirstName);
             if (securityService.IsValid(user))
             {
+                user = securityService.GetUser(user.UserName);
                 return View("LoginSuccess", user);
             }
             else

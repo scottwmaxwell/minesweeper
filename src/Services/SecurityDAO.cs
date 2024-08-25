@@ -1,4 +1,5 @@
 ﻿using Minesweeper.Models;
+using System.Data;
 using System.Data.SqlClient;
 
 namespace Minesweeper.Services
@@ -75,6 +76,50 @@ namespace Minesweeper.Services
             }
 
             return success;
+        }
+
+        public UserModel getUserByUsername(string username)
+        {
+            // Assume there is no user
+            UserModel user = null;
+
+            // uses prepared statements for security. @username @password are defined below
+            string sqlStatement = "SELECT USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, SEX, AGE, STATE FROM dbo.users WHERE USERNAME = @username";
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand command = new SqlCommand(sqlStatement, connection);
+
+                // define the values of the two placeholders in the sqlSatement string
+                command.Parameters.Add("@username", System.Data.SqlDbType.VarChar, 255).Value = username;
+
+                try
+                {
+                    connection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    if (reader.Read())
+                    {
+                        user = new UserModel
+                        {
+                            UserName = reader.GetString(0),
+                            Password = reader.GetString(1), 
+                            FirstName = reader.GetString(2), 
+                            LastName = reader.GetString(3),
+                            Email = reader.GetString(4),
+                            Sex = reader.GetString(5),
+                            Age = reader.GetInt32(6),
+                            State = reader.GetString(7),
+                        };
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                };
+            }
+            
+            return user;
         }
     }
 }

@@ -15,5 +15,9 @@ namespace Minesweeper.Services
         {
             return securityDAO.addUser(user);
         }
+
+        public UserModel GetUser(string username) {
+            return securityDAO.getUserByUsername(username);
+        }
     }
 }
