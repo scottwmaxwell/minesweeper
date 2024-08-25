@@ -13,9 +13,10 @@ namespace Minesweeper.Controllers
 
         public IActionResult RegisterUser(UserModel user)
         {
-            SecurityDAO securityDAO = new SecurityDAO();
-            ViewBag.message = securityDAO.RegisterUser(user) ? "Successfully registered account for " + user.firstName + " " + user.lastName : "Failed to register account";
-            return View();
+            SecurityService securityService = new SecurityService();
+            ViewBag.message = securityService.Save(user) ? "Successfully registered account for " + user.FirstName + " " + user.LastName : "Failed to register account";
+            
+            return View("RegisterSuccess");
         }
     }
 }

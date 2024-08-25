@@ -21,8 +21,8 @@ namespace Minesweeper.Services
                 SqlCommand command = new SqlCommand(sqlStatement, connection);
 
                 // define the values of the two placeholders in the sqlSatement string
-                command.Parameters.Add("@username", System.Data.SqlDbType.VarChar, 255).Value = user.userName;
-                command.Parameters.Add("@password", System.Data.SqlDbType.VarChar, 255).Value = user.password;
+                command.Parameters.Add("@username", System.Data.SqlDbType.VarChar, 255).Value = user.UserName;
+                command.Parameters.Add("@password", System.Data.SqlDbType.VarChar, 255).Value = user.Password;
 
                 try
                 {
@@ -45,18 +45,33 @@ namespace Minesweeper.Services
         public bool RegisterUser(UserModel user)
         {
             bool success = false;
-            string sqlStatement = "INSERT INTO dbo.users (USERNAME, PASSWORD) VALUES (@username, @password, @firstname, @lastname, @email, @sex, @age, @state)";
-
-            using(SqlConnection connection = new SqlConnection())
+            string sqlStatement = "INSERT INTO dbo.users (USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, SEX, AGE, STATE) VALUES (@username, @password, @firstname, @lastname, @email, @sex, @age, @state)";
+            using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 SqlCommand command = new SqlCommand(sqlStatement, connection);
-                command.Parameters.Add("@username", System.Data.SqlDbType.VarChar, 255).Value = user.userName;
-                command.Parameters.Add("@password", System.Data.SqlDbType.VarChar, 255).Value = user.password;
-                command.Parameters.Add("@firstname", System.Data.SqlDbType.VarChar, 255).Value = user.firstName;
-                command.Parameters.Add("@lastname", System.Data.SqlDbType.VarChar, 255).Value = user.lastName;
-                command.Parameters.Add("@email", System.Data.SqlDbType.VarChar, 255).Value = user.email;
-                command.Parameters.Add("@sex", System.Data.SqlDbType.VarChar, 255).Value = user.sex;
-                command.Parameters.Add("@state", System.Data.SqlDbType.VarChar, 255).Value = user.state;
+                command.Parameters.Add("@username", System.Data.SqlDbType.VarChar, 255).Value = user.UserName;
+                command.Parameters.Add("@password", System.Data.SqlDbType.VarChar, 255).Value = user.Password;
+                command.Parameters.Add("@firstname", System.Data.SqlDbType.VarChar, 255).Value = user.FirstName;
+                command.Parameters.Add("@lastname", System.Data.SqlDbType.VarChar, 255).Value = user.LastName;
+                command.Parameters.Add("@email", System.Data.SqlDbType.VarChar, 255).Value = user.Email;
+                command.Parameters.Add("@sex", System.Data.SqlDbType.VarChar, 255).Value = user.Sex;
+                command.Parameters.Add("@age", System.Data.SqlDbType.VarChar, 255).Value = user.Age;
+                command.Parameters.Add("@state", System.Data.SqlDbType.VarChar, 255).Value = user.State;
+
+                try
+                {
+                    connection.Open();
+                    int rowsAffected = command.ExecuteNonQuery();
+                    if (rowsAffected > 0)
+                    {
+                        Console.WriteLine("Added User");
+                        success = true;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
             }
 
             return success;
