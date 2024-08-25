@@ -13,7 +13,7 @@ namespace Minesweeper.Services
 
         public bool Save(UserModel user)
         {
-            return securityDAO.RegisterUser(user);
+            return securityDAO.addUser(user);
         }
     }
 }

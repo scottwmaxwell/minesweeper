@@ -42,7 +42,7 @@ namespace Minesweeper.Services
             return success;
         }
 
-        public bool RegisterUser(UserModel user)
+        public bool addUser(UserModel user)
         {
             bool success = false;
             string sqlStatement = "INSERT INTO dbo.users (USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, SEX, AGE, STATE) VALUES (@username, @password, @firstname, @lastname, @email, @sex, @age, @state)";

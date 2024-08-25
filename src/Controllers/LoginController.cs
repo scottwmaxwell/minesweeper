@@ -6,6 +6,8 @@ namespace Minesweeper.Controllers
 {
     public class LoginController : Controller
     {
+        SecurityService securityService = new SecurityService();
+
         public IActionResult Index()
         {
             return View();
@@ -13,7 +15,7 @@ namespace Minesweeper.Controllers
 
         public IActionResult ProcessLogin(UserModel user)
         {
-            SecurityService securityService = new SecurityService();
+            
             Console.WriteLine("firstname:");
             Console.WriteLine(user.FirstName);
             if (securityService.IsValid(user))
