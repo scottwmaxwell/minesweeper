@@ -38,7 +38,7 @@ namespace Minesweeper.Controllers
             // Update cell
             BOARD.FindCellById(id).Visited = true;
 
-            return View();
+            return View("Index", BOARD);
         }
     }
 }
