@@ -18,7 +18,7 @@ namespace Minesweeper.Controllers
             if (securityService.IsValid(user))
             {
                 user = securityService.GetUser(user.UserName);
-                return View("LoginSuccess", user);
+                return RedirectToAction("Index", "Gameboard");
             }
             else
             {

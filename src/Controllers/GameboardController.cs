@@ -26,18 +26,15 @@ namespace Minesweeper.Controllers
                     BOARD.CalculateLiveNeighbors(i, j);
                 }
             }
+            Console.WriteLine(nonLive);
 
-            return View();
+            return View(BOARD);
         }
 
-        public IActionResult HandleButtonClick(string cellId) 
+        public IActionResult HandleButtonClick(int Id) 
         {
-            // Convert from string to int
-            int id = int.Parse(cellId);
-
             // Update cell
-            BOARD.FindCellById(id).Visited = true;
-
+            BOARD.FindCellById(Id).Visited = true;
             return View("Index", BOARD);
         }
     }
