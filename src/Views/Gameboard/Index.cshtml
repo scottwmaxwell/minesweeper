@@ -26,22 +26,16 @@
 }
 
 <div>
-<h4>Click to Start Playing!</h4>
-@if(true){<h6>Game in Progress</h6>}
+    <h4>Click to Start Playing!</h4>
     <div class="board">
    
         @foreach(var cell in Model.Grid)
         {
-            <div class="cell" onclick="window.location.href='/GameBoard/HandleButtonClick/@cell.Id'">
-
+            <div class="cell" id="@cell.Column-@cell.Row" onclick="window.location.href='/GameBoard/HandleButtonClick/@cell.Id'">
                 @if(cell.Visited){
                     <img class="icon" src=@(cell.Live? Url.Content(icons[2]): Url.Content(icons[1])) />
                 }else{
                       <img class="icon" src="@(Url.Content(icons[0]))" />
-                }
-
-                @{
-                    Console.WriteLine(cell.Live);
                 }
             </div>
         }

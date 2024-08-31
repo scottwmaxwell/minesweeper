@@ -8,6 +8,7 @@
         public bool Visited { get; set; }
         public bool Live { get; set; }
         public int LiveNeighbors { get; set; }
+        public bool Flagged { get; set; }
 
         public CellModel(int id, int row, int column, bool visited, bool live, int liveNeighbors)
         {

@@ -1,4 +1,6 @@
-﻿namespace Minesweeper.Models
+﻿using System.Drawing;
+
+namespace Minesweeper.Models
 {
     public class BoardModel
     {
@@ -10,6 +12,22 @@
         {
             // The array size contains the number of (0) columns and (1) rows
             Size = size;
+            Grid = new CellModel[Size[0], Size[1]];
+            int id = 1;
+            // Insert a cell in each location
+            for (int i = 0; i < Size[0]; i++)
+            {
+                for (int j = 0; j < Size[1]; j++)
+                {
+                    Grid[i, j] = new CellModel(id, i, j, false, false, 0);
+                    id++;
+                }
+            }
+        }
+
+        public void Reset()
+        {
+            // The array size contains the number of (0) columns and (1) rows
             Grid = new CellModel[Size[0], Size[1]];
             int id = 1;
             // Insert a cell in each location
@@ -54,7 +72,6 @@
             if (Grid[i, j].Live)
             {
                 Grid[i, j].LiveNeighbors = 9;
-
             }
             else
             {
@@ -100,6 +117,48 @@
             }
 
             return false;
+        }
+
+        public void FloodFill(int row, int col)
+        {
+            // Base case : cell Has live neighbors
+            if (Grid[row, col].LiveNeighbors != 0)
+            {
+                Grid[row, col].Visited = true;
+                return;
+            }
+            else
+            {
+                // check if cell is flagged
+                if (!Grid[row, col].Flagged)
+                {
+                    // If not flagged, set as visited
+                    Grid[row, col].Visited = true;
+                }
+
+
+                // Recursively visit all neighbors (up down left right)
+                int[] xCell = { 0, 0, -1, 1, -1, 1, -1, 1 };
+                int[] yCell = { 1, -1, 0, 0, -1, 1, 1, -1 };
+                int i, next_x, next_y;
+
+                for (i = 0; i < 8; i++)
+                {
+
+                    next_x = row + xCell[i];
+                    next_y = col + yCell[i];
+
+                    if (next_x < Size[0]
+                        && next_y < Size[1]
+                        && next_x >= 0
+                        && next_y >= 0
+                        && Grid[next_x, next_y].Visited == false)
+                    {
+                        FloodFill(next_x, next_y);
+                    }
+
+                }
+            }
         }
 
         // Method to find a cell by its id
