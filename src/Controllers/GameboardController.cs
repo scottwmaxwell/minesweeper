@@ -27,7 +27,6 @@ namespace Minesweeper.Controllers
 
         public IActionResult HandleButtonClick(int Id) 
         {
-            ViewBag.Game = true;
             CellModel cell = BOARD.FindCellById(Id);
             if (!cell.Visited)
             {
