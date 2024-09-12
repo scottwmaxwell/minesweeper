@@ -12,8 +12,7 @@
                 event.preventDefault();
                 var id = $(this).val();
                 console.log("Cell Id " + id + " was left clicked");
-                //doCellUpdate(id, "/gameboard/ShowOneCell"); 
-                getBoardUpdate(id, "/gameboard/HandleLeftClick");
+                updateBoard(id);
                 break;
             case 3:
                 alert('Right mouse button is pressed');
@@ -23,6 +22,21 @@
     });
 });
 
+function updateBoard(id) {
+    $.ajax({
+        datatype: "html",
+        method: 'POST',
+        data: {
+            "Id": id
+        },
+        url: '/Gameboard/UpdateBoard',
+        success: function (data) {
+            $("#game-board").html(data);
+        }
+    });
+}
+
+// Left in here just in case we need it for right-click
 function doCellUpdate(id, urlString) {
     $.ajax({
         datatype: "json",
