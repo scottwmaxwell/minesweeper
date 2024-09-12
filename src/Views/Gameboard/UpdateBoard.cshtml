@@ -1,0 +1,47 @@
+﻿@model Minesweeper.Models.BoardModel
+
+<style>
+    .board{
+        display:grid;
+        grid-auto-rows: 50px;
+        grid-template-columns: repeat(@Model.Size[0], 50px);
+    }
+    .cell{
+        width:50px;
+        height:50px;
+        padding: 0;
+        margin 0;
+        border: none;
+    }
+    .cell:hover{
+        cursor:pointer;
+        opacity:50%;
+    }
+    .icon{
+        width:50px;
+        height:50px;
+        display: block;
+    }
+</style>
+
+@{
+    var icons = new string[] { "~/img/notvisited.png", "~/img/visited.png", "~/img/bomb.gif" };
+}
+
+<div class="board">
+    @foreach (var cell in Model.Grid)
+    {
+        <div class="oneCell" id="cell-@cell.Id">
+            <button class="cell" type="submit" value="@cell.Id" name="Id" asp-controller="Gameboard" asp-action="HandleButtonClick">
+                @if (cell.Visited)
+                {
+                    <img class="icon" src=@(cell.Live? Url.Content(icons[2]) : Url.Content(icons[1])) />
+                }
+                else
+                {
+                    <img class="icon" src=@Url.Content(icons[0]) />
+                }
+            </button>
+        </div>
+    }
+</div>
