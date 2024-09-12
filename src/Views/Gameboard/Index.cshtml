@@ -10,7 +10,7 @@
         width:50px;
         height:50px;
         padding: 0;
-        margin 0;
+        margin: 0;
         border: none;
     }
     .cell:hover{
@@ -28,7 +28,6 @@
     var icons = new string[] { "~/img/notvisited.png", "~/img/visited.png", "~/img/bomb.gif" };
 }
 <p>Current Time: @DateTime.UtcNow</p>
-<<<<<<< HEAD
 
 <div>
     <h4>Click to Start Playing!</h4>
@@ -46,13 +45,5 @@
                 </button>
             </div>
         }
-=======
-<form>
-    <div>
-        <h4>Click to Start Playing!</h4>
-        <div id="game-board">
-            @await Html.PartialAsync("UpdateBoard", Model)
-        </div>
->>>>>>> 55778e97e5f3848ca78922f37b09a4800d8e6d85
     </div>
 </div>

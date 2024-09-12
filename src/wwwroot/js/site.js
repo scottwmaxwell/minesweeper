@@ -66,7 +66,3 @@ function getBoardUpdate(id, urlString) {
         }
     });
 };
-
-function updateBoard() {
-
-}
