@@ -1,3 +1,5 @@
+using Minesweeper.Services;
+
 namespace Minesweeper
 {
     public class Program
@@ -8,6 +10,7 @@ namespace Minesweeper
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            builder.Services.AddSingleton<GameService>(sp => new GameService(new int[] { 12, 12 }, 10));
 
             var app = builder.Build();
 

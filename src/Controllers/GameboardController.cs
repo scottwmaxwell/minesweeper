@@ -6,13 +6,20 @@ namespace Minesweeper.Controllers
 {
     public class GameboardController : Controller
     {
-        GameService gameService = new GameService(new int[] { 12, 12 }, 10);
+        private readonly GameService gameService;
+
+        // Initialize service when gameboard is created
+        public GameboardController(GameService gameService)
+        {
+            this.gameService = gameService;
+        }
+
         public IActionResult Index()
         {
             return View(gameService.Board);
         }
 
-        public IActionResult HandleButtonClick(int Id) 
+        public IActionResult HandleButtonClick(int Id)
         {
             gameService.UpdateGame(Id);
             return View("Index", gameService.Board);
@@ -30,7 +37,7 @@ namespace Minesweeper.Controllers
             gameService.UpdateGame(Id);
 
             // TODO: Implement GetJsonBoard()
-           
+
             return Json(gameService.GetJsonBoard());
         }
 
