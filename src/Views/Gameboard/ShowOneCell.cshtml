@@ -1,0 +1,17 @@
+﻿@model Minesweeper.Models.CellModel
+
+@{
+    var icons = new string[] { "~/img/notvisited.png", "~/img/visited.png", "~/img/bomb.gif" };
+}
+
+
+<button class="cell" type="submit" value="@Model.Id" name="Id" asp-controller="Gameboard" asp-action="HandleButtonClick">
+    @if (Model.Visited)
+    {
+        <img class="icon" src=@(Model.Live? Url.Content(icons[2]): Url.Content(icons[1])) />
+    }
+    else
+    {
+        <img class="icon" src="@(Url.Content(icons[0]))" />
+    }
+</button>

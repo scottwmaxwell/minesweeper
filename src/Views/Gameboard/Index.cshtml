@@ -9,6 +9,9 @@
     .cell{
         width:50px;
         height:50px;
+        padding: 0;
+        margin 0;
+        border: none;
     }
     .cell:hover{
         cursor:pointer;
@@ -17,26 +20,31 @@
     .icon{
         width:50px;
         height:50px;
+        display: block;
     }
 </style>
 
 @{
     var icons = new string[] { "~/img/notvisited.png", "~/img/visited.png", "~/img/bomb.gif" };
 }
-
-<div>
-    <h4>Click to Start Playing!</h4>
-    <div class="board">
+<p>Current Time: @DateTime.UtcNow</p>
+<form>
+    <div>
+        <h4>Click to Start Playing!</h4>
+        <div class="board">
    
-        @foreach(var cell in Model.Grid)
-        {
-            <div class="cell" id="@cell.Column-@cell.Row" onclick="window.location.href='/GameBoard/HandleButtonClick/@cell.Id'">
-                @if(cell.Visited){
-                    <img class="icon" src=@(cell.Live? Url.Content(icons[2]): Url.Content(icons[1])) />
-                }else{
-                      <img class="icon" src="@(Url.Content(icons[0]))" />
-                }
-            </div>
-        }
+            @foreach(var cell in Model.Grid)
+            {
+                <div class="oneCell" id=@cell.Id>
+                    <button class="cell" type="submit" value="@cell.Id" name="Id" asp-controller="Gameboard" asp-action="HandleButtonClick">
+                        @if(cell.Visited){
+                            <img class="icon" src=@(cell.Live? Url.Content(icons[2]): Url.Content(icons[1])) />
+                        }else{
+                              <img class="icon" src="@(Url.Content(icons[0]))" />
+                        }
+                    </button>
+                </div>
+            }
+        </div>
     </div>
-</div>
+</form>

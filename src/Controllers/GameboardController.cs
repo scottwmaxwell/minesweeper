@@ -42,5 +42,24 @@ namespace Minesweeper.Controllers
 
             return View("Index", BOARD);
         }
+
+        public IActionResult ShowOneCell(int Id) 
+        {
+            CellModel cell = BOARD.FindCellById(Id);
+            if (!cell.Visited)
+            {
+                int row = cell.Row;
+                int col = cell.Column;
+
+                // Recursive function
+                // I don't think this works for one cell, might need to implement another method
+                // BOARD.FloodFill(row, col);
+
+                // Update cell
+                cell.Visited = true;
+            }
+
+            return PartialView(BOARD.FindCellById(Id));
+        }
     }
 }
