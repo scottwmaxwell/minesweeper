@@ -28,23 +28,22 @@
     var icons = new string[] { "~/img/notvisited.png", "~/img/visited.png", "~/img/bomb.gif" };
 }
 <p>Current Time: @DateTime.UtcNow</p>
-<form>
-    <div>
-        <h4>Click to Start Playing!</h4>
-        <div class="board">
+
+<div>
+    <h4>Click to Start Playing!</h4>
+    <div class="board">
    
-            @foreach(var cell in Model.Grid)
-            {
-                <div class="oneCell" id=@cell.Id>
-                    <button class="cell" type="submit" value="@cell.Id" name="Id" asp-controller="Gameboard" asp-action="HandleButtonClick">
-                        @if(cell.Visited){
-                            <img class="icon" src=@(cell.Live? Url.Content(icons[2]): Url.Content(icons[1])) />
-                        }else{
-                              <img class="icon" src="@(Url.Content(icons[0]))" />
-                        }
-                    </button>
-                </div>
-            }
-        </div>
+        @foreach(var cell in Model.Grid)
+        {
+            <div class="oneCell" id=@cell.Id>
+                <button class="cell" type="submit" value="@cell.Id" name="Id" asp-controller="Gameboard" asp-action="HandleButtonClick">
+                    @if(cell.Visited){
+                        <img class="icon" src=@(cell.Live? Url.Content(icons[2]): Url.Content(icons[1])) />
+                    }else{
+                            <img class="icon" src="@(Url.Content(icons[0]))" />
+                    }
+                </button>
+            </div>
+        }
     </div>
-</form>
+</div>
