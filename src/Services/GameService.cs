@@ -53,5 +53,24 @@ namespace Minesweeper.Services
             return null;
         }
 
+        public void FlagCell(int id)
+        {
+            CellModel cell = Board.FindCellById(id);
+            if (!cell.Visited)
+            {
+                if(!cell.Flagged)
+                {
+                    // Flag cell
+                    cell.Flagged = true;
+                }
+                else
+                {
+                    cell.Flagged = false;
+                }
+                
+            }
+
+        }
+
     }
 }

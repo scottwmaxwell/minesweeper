@@ -41,10 +41,10 @@ namespace Minesweeper.Controllers
             return Json(gameService.GetJsonBoard());
         }
 
-        public IActionResult ShowOneCell(int Id)
+        public IActionResult FlagCell(int Id)
         {
-            gameService.UpdateGame(Id);
-            return PartialView(gameService.Board.FindCellById(Id));
+            gameService.FlagCell(Id);
+            return PartialView("UpdateBoard", gameService.Board);
         }
     }
 }

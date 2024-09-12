@@ -25,7 +25,7 @@
 </style>
 
 @{
-    var icons = new string[] { "~/img/notvisited.png", "~/img/visited.png", "~/img/bomb.gif" };
+    var icons = new string[] { "~/img/notvisited.png", "~/img/visited.png", "~/img/bomb.gif", "~/img/flagged.png" };
 }
 
 <div class="board">
@@ -36,6 +36,10 @@
                 @if (cell.Visited)
                 {
                     <img class="icon" src=@(cell.Live? Url.Content(icons[2]) : Url.Content(icons[1])) />
+                }
+                else if (cell.Flagged)
+                {
+                    <img class="icon" src=@Url.Content(icons[3]) />
                 }
                 else
                 {

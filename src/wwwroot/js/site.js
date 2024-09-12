@@ -12,46 +12,34 @@
                 event.preventDefault();
                 var id = $(this).val();
                 console.log("Cell Id " + id + " was left clicked");
-                updateBoard(id);
+                updateBoard(id, "/Gameboard/UpdateBoard");
                 break;
             case 3:
-                alert('Right mouse button is pressed');
+                event.preventDefault();
+                var id = $(this).val();
+                console.log("Cell Id " + id + " was right clicked");
+                updateBoard(id, "/Gameboard/FlagCell");
             default:
                 break;
         }
     });
 });
 
-function updateBoard(id) {
+function updateBoard(id, urlString) {
     $.ajax({
         datatype: "html",
         method: 'POST',
         data: {
             "Id": id
         },
-        url: '/Gameboard/UpdateBoard',
+        url: urlString,
         success: function (data) {
             $("#game-board").html(data);
         }
     });
 }
 
-// Left in here just in case we need it for right-click
-function doCellUpdate(id, urlString) {
-    $.ajax({
-        datatype: "json",
-        method: 'POST',
-        url: urlString,
-        data: {
-            "Id": id
-        },
-        success: function(data) {
-            console.log(data);
-            $("#" + id).html(data);
-        }
-    });
-};
-
+// Is this needed?s
 function getBoardUpdate(id, urlString) {
     board = [];
     $.ajax({
