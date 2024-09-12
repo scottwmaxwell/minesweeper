@@ -34,6 +34,13 @@ namespace Minesweeper.Services
         public void UpdateGame(int id)
         {
             CellModel cell = Board.FindCellById(id);
+            // Check if the cell is flagged before processing the click
+            if (cell.Flagged)
+            {
+                // Do not update the cell if it is flagged
+                return;
+            }
+            
             if (!cell.Visited)
             {
                 int row = cell.Row;
@@ -45,6 +52,7 @@ namespace Minesweeper.Services
                 // Update cell
                 cell.Visited = true;
             }
+            
         }
 
         public JsonContent GetJsonBoard()
