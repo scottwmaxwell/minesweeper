@@ -13,12 +13,16 @@
                 var id = $(this).val();
                 console.log("Cell Id " + id + " was left clicked");
                 updateBoard(id, "/Gameboard/UpdateBoard");
+                var audio = new Audio('../audio/reveal.mp3');
+                audio.play();
                 break;
             case 3:
                 event.preventDefault();
                 var id = $(this).val();
                 console.log("Cell Id " + id + " was right clicked");
                 updateBoard(id, "/Gameboard/FlagCell");
+                var audio = new Audio('../audio/flag.mp3');
+                audio.play();
             default:
                 break;
         }
@@ -35,22 +39,28 @@ function updateBoard(id, urlString) {
         url: urlString,
         success: function (data) {
             $("#game-board").html(data);
+            updateStatus();
         }
     });
 }
 
-// Is this needed?s
-function getBoardUpdate(id, urlString) {
-    board = [];
+function updateStatus() {
     $.ajax({
-        datatype: "json",
+        datatype: "html",
         method: 'POST',
-        url: urlString,
-        data: {
-            "Board": board
-        },
+        url: "/Gameboard/UpdateStatus",
         success: function (data) {
             console.log(data);
+
+            if (data == 2) {
+                var audio = new Audio('../audio/bomb.mp3');
+                audio.play();
+                $('#game-status').html("Game Over!")
+            } else if (data == 1) {
+                var audio = new Audio('../audio/win.mp3');
+                audio.play();
+                $('#game-status').html("You won!")
+            }
         }
     });
-};
+}

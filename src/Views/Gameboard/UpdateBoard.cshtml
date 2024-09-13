@@ -43,7 +43,7 @@
                 }
                 else
                 {
-                    <img class="icon" src=@Url.Content(icons[0]) />
+                    <img class="icon" src=@(cell.Live && ViewBag.gameStatus > 1? Url.Content(icons[2]): Url.Content(icons[0])) />
                 }
             </button>
         </div>

@@ -27,7 +27,7 @@
 <p>Current Time: @DateTime.UtcNow</p>
 
 <div>
-    <h4>Click to Start Playing!</h4>
+    <h4 id="game-status">Click to Start Playing!</h4>
     <div id="game-board">
         @await Html.PartialAsync("UpdateBoard", Model)
     </div>

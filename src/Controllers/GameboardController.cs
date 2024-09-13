@@ -16,6 +16,7 @@ namespace Minesweeper.Controllers
 
         public IActionResult Index()
         {
+            this.gameService.SetGame();
             return View(gameService.Board);
         }
 
@@ -28,17 +29,13 @@ namespace Minesweeper.Controllers
         public IActionResult UpdateBoard(int Id)
         {
             gameService.UpdateGame(Id);
+            ViewBag.gameStatus = gameService.GameStatus;
             return PartialView(gameService.Board);
         }
 
-        [HttpPost]
-        public IActionResult HandleLeftClick(int Id)
+        public IActionResult UpdateStatus()
         {
-            gameService.UpdateGame(Id);
-
-            // TODO: Implement GetJsonBoard()
-
-            return Json(gameService.GetJsonBoard());
+            return Json(gameService.GameStatus);
         }
 
         public IActionResult FlagCell(int Id)

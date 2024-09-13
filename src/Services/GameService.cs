@@ -13,14 +13,18 @@ namespace Minesweeper.Services
         {
             GridSize = gridSize;
             LiveNeighbors = liveNeighbors;
-            Board = new BoardModel(gridSize);
             this.SetGame();
         }
 
         public void SetGame()
         {
-            Board.SetupLiveNeighbors(LiveNeighbors);
+            // Reset grid
+            Board = new BoardModel(GridSize);
 
+            // Set game status
+            this.GameStatus = 0;
+
+            Board.SetupLiveNeighbors(LiveNeighbors);
             // Calculate the cell live neighbors
             for (int i = 0; i < GridSize[0]; i++)
             {
@@ -35,7 +39,7 @@ namespace Minesweeper.Services
         {
             CellModel cell = Board.FindCellById(id);
             // Check if the cell is flagged before processing the click
-            if (cell.Flagged)
+            if (cell.Flagged || this.GameStatus > 0)
             {
                 // Do not update the cell if it is flagged
                 return;
@@ -52,13 +56,15 @@ namespace Minesweeper.Services
                 // Update cell
                 cell.Visited = true;
             }
-            
-        }
 
-        public JsonContent GetJsonBoard()
-        {
-            // TODO: create a json object by parsing Board.Grid
-            return null;
+            if (cell.Live)
+            {
+                this.GameStatus = 2;
+            }
+            else if (!Board.CheckUnivisted())
+            {
+                this.GameStatus = 1;
+            }
         }
 
         public void FlagCell(int id)
