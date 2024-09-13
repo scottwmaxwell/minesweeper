@@ -56,6 +56,12 @@ function updateStatus() {
                 var audio = new Audio('../audio/bomb.mp3');
                 audio.play();
                 $('#game-status').html("Game Over!")
+                setTimeout(() => {
+                    $(".live").each((index, element) => {
+                        $(element).attr('src', '../img/explode.png');
+                    });
+                }, 1500);
+
             } else if (data == 1) {
                 var audio = new Audio('../audio/win.mp3');
                 audio.play();

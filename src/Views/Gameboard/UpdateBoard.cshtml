@@ -43,7 +43,8 @@
                 }
                 else
                 {
-                    <img class="icon" src=@(cell.Live && ViewBag.gameStatus > 1? Url.Content(icons[2]): Url.Content(icons[0])) />
+                    var revealBomb = cell.Live && ViewBag.gameStatus > 1;
+                    <img class="@(revealBomb? "live icon":"icon")" src=@(revealBomb? Url.Content(icons[2]): Url.Content(icons[0])) />
                 }
             </button>
         </div>
