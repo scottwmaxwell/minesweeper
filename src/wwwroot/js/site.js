@@ -50,8 +50,7 @@ function updateStatus() {
         method: 'POST',
         url: "/Gameboard/UpdateStatus",
         success: function (data) {
-            console.log(data);
-
+            console.log("Game Status: " + data);
             if (data == 2) {
                 var audio = new Audio('../audio/bomb.mp3');
                 audio.play();
