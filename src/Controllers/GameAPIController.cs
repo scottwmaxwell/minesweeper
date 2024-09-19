@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Minesweeper.Models;
+using Minesweeper.Services;
 
 namespace Minesweeper.Controllers
 {
@@ -8,38 +9,37 @@ namespace Minesweeper.Controllers
     [Route("api/[controller]")]
     public class GameAPIController : ControllerBase
     {
-        [HttpPost("saveGame")]
-        public ActionResult SaveGame(SavedGame game)
+        GameDAO gameDAO = new GameDAO();
+
+        [HttpGet("showSavedGames")]
+        public ActionResult <IEnumerable<SavedGame>> ShowSavedGames()
         {
-            // TODO: Get User Session and Use it to get User ID
-
-            // TODO: Save game to Database
-
-            throw new NotImplementedException();
+            List<SavedGame> savedGames = null;
+            savedGames = gameDAO.GetAllGames();
+            return savedGames;
         }
 
         [HttpGet("showSavedGames/{gameId}")]
-        public ActionResult ShowSavedGames(string gameId)
+        public ActionResult <SavedGame> ShowSavedGame(string gameId)
         {
-            if (gameId != null)
-            {
-                // TODO: Return the single game
-            }
-            else
-            {
-                // TODO: Return all games available for the user Id
-            }
-
-
-            throw new NotImplementedException();
+            SavedGame savedGame = null;
+            savedGame = gameDAO.GetGame(gameId);
+            return savedGame;
         }
 
         [HttpDelete("deleteOneGame/{gameId}")]
-        public ActionResult DeleteOneGame(string gameId) 
-        {    
-            // TODO: Delete Game from database based on gameId
+        public ActionResult DeleteOneGame(string gameId)
+        {
+            Boolean result = gameDAO.DeleteGame(gameId);
 
-            throw new NotImplementedException(); 
+            if (result)
+            {
+                return NoContent(); // HTTP 204
+            }
+            else
+            {
+                return NotFound(); // HTTP 404 if game was not found
+            }
         }
     }
 }

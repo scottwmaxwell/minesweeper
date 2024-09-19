@@ -27,6 +27,10 @@
                 break;
         }
     });
+
+    $('#save-game').on("mousedown", function (event) {
+        saveGame();
+    });
 });
 
 function updateBoard(id, urlString) {
@@ -42,6 +46,17 @@ function updateBoard(id, urlString) {
             updateStatus();
         }
     });
+}
+
+function saveGame() {
+    $.ajax({
+        datatype: "html",
+        method: 'POST',
+        url: "/Gameboard/SaveGame",
+        success: function (data) {
+            console.log("Game saved");
+        }
+    })
 }
 
 function updateStatus() {

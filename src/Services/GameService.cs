@@ -86,5 +86,13 @@ namespace Minesweeper.Services
 
         }
 
+        public Boolean SaveGame(int id)
+        {
+            Boolean result = false;
+            GameDAO game = new GameDAO();
+            result = game.SaveGame(this, id);
+            return result;
+        }
+
     }
 }
