@@ -138,6 +138,7 @@ function deleteGame(id) {
             console.log("Deleted game");
             $('#saved-games').empty();
             getAllGames();
+            $('#delete-game').addClass('hide');
         }
     })
 }
