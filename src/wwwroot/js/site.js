@@ -33,13 +33,14 @@
     });
 
     $('#delete-game').on("mousedown", function (event) {
-        const result = confirm("Are you sure you want to delete this game?");
-
-        // TODO - We need a way to get the user ID
-        //if(result) deleteGame(id);
+        const id = $('.saved-game.selected').attr('id');
+        let result;
+        if (id) 
+            result = confirm("Are you sure you want to delete this game?");
+        if(result) deleteGame(id);
     });
 
-
+    getAllGames();
 
 });
 
@@ -58,6 +59,45 @@ function updateBoard(id, urlString) {
     });
 }
 
+function getAllGames() {
+    $.ajax({
+        datatype: "json",
+        method: 'GET',
+        url: "/api/GameAPI/showSavedGames/",
+        success: function (data) {
+            console.log(data);
+            appendGameList(data);
+            $('.saved-game').each(function () {
+                $(this).on("click", handleSaveGameClick);
+            });
+        }
+    })
+}
+
+function handleSaveGameClick(e) {
+
+    // Unselect all other games
+    $('.saved-game').each(function () {
+        $(this).removeClass("selected");
+    });
+
+    console.log(e.target.id);
+    // Select new clicked game
+    e.target.classList += " selected";
+
+    // Show delete button
+    $('#delete-game').removeClass('hide');
+    
+}
+
+function appendGameList(games) {
+    games.findLast((game) => {
+        let newLine = `<li class="saved-game" id="${game.id}">${game.date}</li>`
+        console.log(newLine);
+        $('#saved-games').append(newLine);
+    });
+}
+
 function saveGame() {
     $.ajax({
         datatype: "html",
@@ -65,6 +105,8 @@ function saveGame() {
         url: "/Gameboard/SaveGame",
         success: function (data) {
             console.log("Game saved");
+            $('#saved-games').empty();
+            getAllGames();
         }
     })
 }
@@ -72,10 +114,12 @@ function saveGame() {
 function deleteGame(id) {
     $.ajax({
         datatype: "html",
-        method: 'POST',
+        method: 'DELETE',
         url: "/api/GameAPI/deleteOneGame/" + id,
         success: function (data) {
-            console.log("Game saved");
+            console.log("Deleted game");
+            $('#saved-games').empty();
+            getAllGames();
         }
     })
 }

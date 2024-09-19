@@ -126,7 +126,6 @@ namespace Minesweeper.Services
             {
                 SqlCommand command = new SqlCommand(sqlStatement, connection);
                 command.Parameters.Add("@id", System.Data.SqlDbType.VarChar, 255).Value = id;
-
                 try
                 {
                     connection.Open();

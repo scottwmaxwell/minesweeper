@@ -22,6 +22,24 @@
         height:50px;
         display: block;
     }
+
+    .saved-game:hover{
+        cursor:pointer;
+        color:green;
+        border:solid;
+        border-radius:10px;
+    }
+
+    .saved-game.selected {
+        cursor: pointer;
+        color: green;
+        border: solid;
+        border-radius: 10px;
+    }
+    .hide{
+        visibility:hidden;
+    }
+
 </style>
 
 <p>Current Time: @DateTime.UtcNow</p>
@@ -32,12 +50,14 @@
         @await Html.PartialAsync("UpdateBoard", Model)
     </div>
     <button class="btn btn-primary" id="save-game">Save Game</button>
-    <button class="btn btn-danger" id="delete-game">Delete Game</button>
+    <button class="btn btn-danger hide" id="delete-game">Delete Game</button>
 </div>
 
 <div>
     <h4>Saved Games</h4>
-    <div id="saved-games">
-        
+    <div>
+        <ul id="saved-games">
+
+        </ul>
     </div>
 </div>
