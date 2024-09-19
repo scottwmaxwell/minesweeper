@@ -54,5 +54,11 @@ namespace Minesweeper.Controllers
             gameService.SaveGame(userId);
             return Json("Game saved");
         }
+
+        public IActionResult LoadSavedGame(string id)
+        {
+            gameService.LoadGame(id);
+            return PartialView("UpdateBoard", gameService.Board);
+        }
     }
 }

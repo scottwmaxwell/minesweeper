@@ -76,12 +76,15 @@ function getAllGames() {
 
 function handleSaveGameClick(e) {
 
+    console.log(e.target.id);
+
     // Unselect all other games
     $('.saved-game').each(function () {
         $(this).removeClass("selected");
     });
 
-    console.log(e.target.id);
+    loadGame(e.target.id);
+
     // Select new clicked game
     e.target.classList += " selected";
 
@@ -95,6 +98,21 @@ function appendGameList(games) {
         let newLine = `<li class="saved-game" id="${game.id}">${game.date}</li>`
         console.log(newLine);
         $('#saved-games').append(newLine);
+    });
+}
+
+function loadGame(id) {
+    $.ajax({
+        datatype: "html",
+        method: 'GET',
+        data: {
+            "Id": id
+        },
+        url: "/GameBoard/LoadSavedGame",
+        success: function (data) {
+            $("#game-board").html(data);
+            updateStatus();
+        }
     });
 }
 
