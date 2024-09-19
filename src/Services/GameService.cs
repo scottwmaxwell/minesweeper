@@ -89,8 +89,20 @@ namespace Minesweeper.Services
         public Boolean SaveGame(int id)
         {
             Boolean result = false;
-            GameDAO game = new GameDAO();
-            result = game.SaveGame(this, id);
+            GameDAO gameDAO = new GameDAO();
+            result = gameDAO.SaveGame(this, id);
+            return result;
+        }
+
+        public Boolean LoadGame(string id)
+        {
+            Boolean result = false;
+            GameDAO gameDAO = new GameDAO();
+            SavedGame savedGame = gameDAO.GetGame(id);
+            if(savedGame != null)
+                result = true;
+            Board = savedGame.Board;
+            GameStatus = 0;
             return result;
         }
 
