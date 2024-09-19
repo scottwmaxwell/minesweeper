@@ -25,6 +25,7 @@ namespace Minesweeper.Controllers
             else
             {
                 HttpContext.Session.Remove("username");
+                HttpContext.Session.Remove("id");
                 return View("LoginFailure", user);
             }
         }

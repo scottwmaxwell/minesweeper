@@ -31,6 +31,16 @@
     $('#save-game').on("mousedown", function (event) {
         saveGame();
     });
+
+    $('#delete-game').on("mousedown", function (event) {
+        const result = confirm("Are you sure you want to delete this game?");
+
+        // TODO - We need a way to get the user ID
+        //if(result) deleteGame(id);
+    });
+
+
+
 });
 
 function updateBoard(id, urlString) {
@@ -53,6 +63,17 @@ function saveGame() {
         datatype: "html",
         method: 'POST',
         url: "/Gameboard/SaveGame",
+        success: function (data) {
+            console.log("Game saved");
+        }
+    })
+}
+
+function deleteGame(id) {
+    $.ajax({
+        datatype: "html",
+        method: 'POST',
+        url: "/api/GameAPI/deleteOneGame/" + id,
         success: function (data) {
             console.log("Game saved");
         }

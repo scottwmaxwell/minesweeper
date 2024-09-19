@@ -15,7 +15,8 @@ namespace Minesweeper.Controllers
         public ActionResult <IEnumerable<SavedGame>> ShowSavedGames()
         {
             List<SavedGame> savedGames = null;
-            savedGames = gameDAO.GetAllGames();
+            string userId = HttpContext.Session.GetString("id");
+            savedGames = gameDAO.GetAllGames(userId);
             return savedGames;
         }
 

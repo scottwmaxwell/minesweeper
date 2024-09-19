@@ -38,17 +38,17 @@ namespace Minesweeper.Services
             }
         }
 
-        public List<SavedGame> GetAllGames()
+        public List<SavedGame> GetAllGames(string userId)
         {
 
             List<SavedGame> savedGames = new List<SavedGame>();
 
-            string sqlStatement = "SELECT id, userId, date, game FROM dbo.games";
+            string sqlStatement = "SELECT id, userId, date, game FROM dbo.games WHERE userId = @userId";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 SqlCommand command = new SqlCommand(sqlStatement, connection);
-
+                command.Parameters.Add("@userId", System.Data.SqlDbType.VarChar, 255).Value = userId;
                 try
                 {
                     connection.Open();
