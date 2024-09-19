@@ -29,11 +29,11 @@
 }
 
 <div class="board">
-    @for (int i = 0; i < Model.Size[0]; i++) // Loop through rows
+    @for (int i = 0; i < Model.Size[0]; i++)
     {
-        @for (int j = 0; j < Model.Size[1]; j++) // Loop through columns
+        @for (int j = 0; j < Model.Size[1]; j++)
         {
-            var cell = Model.Grid[i][j]; // Access each cell in the jagged array
+            var cell = Model.Grid[i][j]; 
             <div class="oneCell" id="cell-@cell.Id">
                 <button class="cell" type="submit" value="@cell.Id" name="Id" asp-controller="Gameboard" asp-action="HandleButtonClick">
                     @if (cell.Visited)
