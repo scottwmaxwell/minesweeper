@@ -26,7 +26,6 @@ namespace Minesweeper.Controllers
         public IActionResult HandleButtonClick(int Id)
         {
             this.gameService.SetGame();
-
             gameService.UpdateGame(Id);
             return View("Index", gameService.Board);
         }
