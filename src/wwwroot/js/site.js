@@ -27,6 +27,10 @@
                 break;
         }
     });
+
+    $('#save-game').on("mousedown", function (event) {
+        saveGame();
+    });
 });
 
 function updateBoard(id, urlString) {
@@ -44,14 +48,24 @@ function updateBoard(id, urlString) {
     });
 }
 
+function saveGame() {
+    $.ajax({
+        datatype: "html",
+        method: 'POST',
+        url: "/Gameboard/SaveGame",
+        success: function (data) {
+            console.log("Game saved");
+        }
+    })
+}
+
 function updateStatus() {
     $.ajax({
         datatype: "html",
         method: 'POST',
         url: "/Gameboard/UpdateStatus",
         success: function (data) {
-            console.log(data);
-
+            console.log("Game Status: " + data);
             if (data == 2) {
                 var audio = new Audio('../audio/bomb.mp3');
                 audio.play();

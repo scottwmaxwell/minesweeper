@@ -45,5 +45,11 @@ namespace Minesweeper.Controllers
             gameService.FlagCell(Id);
             return PartialView("UpdateBoard", gameService.Board);
         }
+
+        public IActionResult SaveGame()
+        {
+            gameService.SaveGame(1);
+            return Json("Game saved");
+        }
     }
 }

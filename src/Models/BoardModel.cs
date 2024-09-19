@@ -5,21 +5,22 @@ namespace Minesweeper.Models
     public class BoardModel
     {
         public int[] Size { get; set; }
-        public CellModel[,] Grid { get; set; }
+        public CellModel[][] Grid { get; set; }
         public decimal Difficulty { get; set; }
 
         public BoardModel(int[] size)
         {
             // The array size contains the number of (0) columns and (1) rows
             Size = size;
-            Grid = new CellModel[Size[0], Size[1]];
+            Grid = new CellModel[Size[0]][];
             int id = 1;
             // Insert a cell in each location
             for (int i = 0; i < Size[0]; i++)
             {
+                Grid[i] = new CellModel[Size[1]];
                 for (int j = 0; j < Size[1]; j++)
                 {
-                    Grid[i, j] = new CellModel(id, i, j, false, false, 0);
+                    Grid[i][j] = new CellModel(id, i, j, false, false, 0);
                     id++;
                 }
             }
@@ -28,14 +29,15 @@ namespace Minesweeper.Models
         public void Reset()
         {
             // The array size contains the number of (0) columns and (1) rows
-            Grid = new CellModel[Size[0], Size[1]];
+            Grid = new CellModel[Size[0]][];
             int id = 1;
             // Insert a cell in each location
             for (int i = 0; i < Size[0]; i++)
             {
+                Grid[i] = new CellModel[Size[1]];
                 for (int j = 0; j < Size[1]; j++)
                 {
-                    Grid[i, j] = new CellModel(id, i, j, false, false, 0);
+                    Grid[i][j] = new CellModel(id, i, j, false, false, 0);
                     id++;
                 }
             }
@@ -58,9 +60,9 @@ namespace Minesweeper.Models
                 int col = rnd.Next(0, Size[0]);
                 int row = rnd.Next(0, Size[1]);
 
-                if (!Grid[col, row].Live)
+                if (!Grid[col][row].Live)
                 {
-                    Grid[col, row].Live = true;
+                    Grid[col][row].Live = true;
                     mine++;
                 }
             }
@@ -69,9 +71,9 @@ namespace Minesweeper.Models
         public void CalculateLiveNeighbors(int i, int j)
         {
             // Check if cell is live
-            if (Grid[i, j].Live)
+            if (Grid[i][j].Live)
             {
-                Grid[i, j].LiveNeighbors = 9;
+                Grid[i][j].LiveNeighbors = 9;
             }
             else
             {
@@ -90,9 +92,9 @@ namespace Minesweeper.Models
                             {
                                 if (x < rowLimit && y < columnLimit && (x != i || y != j))
                                 {
-                                    if (Grid[x, y].Live)
+                                    if (Grid[x][y].Live)
                                     {
-                                        Grid[i, j].LiveNeighbors++;
+                                        Grid[i][j].LiveNeighbors++;
                                     }
                                 }
                             }
@@ -109,7 +111,7 @@ namespace Minesweeper.Models
             {
                 for (int j = 0; j < Size[1]; j++)
                 {
-                    if (Grid[i, j].Visited == false && Grid[i, j].Live == false)
+                    if (Grid[i][j].Visited == false && Grid[i][j].Live == false)
                     {
                         return true;
                     }
@@ -123,18 +125,18 @@ namespace Minesweeper.Models
         {
 
             // Base case : cell Has live neighbors
-            if (Grid[row, col].LiveNeighbors != 0)
+            if (Grid[row][col].LiveNeighbors != 0)
             {
-                Grid[row, col].Visited = true;
+                Grid[row][col].Visited = true;
                 return;
             }
             else
             {
                 // check if cell is flagged
-                if (!Grid[row, col].Flagged)
+                if (!Grid[row][col].Flagged)
                 {
                     // If not flagged, set as visited
-                    Grid[row, col].Visited = true;
+                    Grid[row][col].Visited = true;
                 }
 
 
@@ -153,7 +155,7 @@ namespace Minesweeper.Models
                         && next_y < Size[1]
                         && next_x >= 0
                         && next_y >= 0
-                        && Grid[next_x, next_y].Visited == false)
+                        && Grid[next_x][next_y].Visited == false)
                     {
                         FloodFill(next_x, next_y);
                     }
@@ -170,9 +172,9 @@ namespace Minesweeper.Models
             {
                 for (int j = 0; j < Size[1]; j++)
                 {
-                    if (Grid[i, j].Id == id)
+                    if (Grid[i][j].Id == id)
                     {
-                        return Grid[i, j];
+                        return Grid[i][j];
                     }
                 }
             }
