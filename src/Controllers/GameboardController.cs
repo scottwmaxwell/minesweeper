@@ -14,8 +14,11 @@ namespace Minesweeper.Controllers
             this.gameService = gameService;
         }
 
+        [HttpGet]
+        [CustomAuthorization]
         public IActionResult Index()
         {
+            Console.WriteLine("Index");
             this.gameService.SetGame();
             return View(gameService.Board);
         }
@@ -48,7 +51,8 @@ namespace Minesweeper.Controllers
 
         public IActionResult SaveGame()
         {
-            gameService.SaveGame(1);
+            int userId = int.Parse(HttpContext.Session.GetString("id"));
+            gameService.SaveGame(userId);
             return Json("Game saved");
         }
     }

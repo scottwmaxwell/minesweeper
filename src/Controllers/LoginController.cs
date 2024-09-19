@@ -18,10 +18,13 @@ namespace Minesweeper.Controllers
             if (securityService.IsValid(user))
             {
                 user = securityService.GetUser(user.UserName);
+                HttpContext.Session.SetString("username", user.UserName);
+                HttpContext.Session.SetString("id", user.Id.ToString());
                 return RedirectToAction("Index", "Gameboard");
             }
             else
             {
+                HttpContext.Session.Remove("username");
                 return View("LoginFailure", user);
             }
         }

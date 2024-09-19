@@ -12,6 +12,13 @@ namespace Minesweeper
             builder.Services.AddControllersWithViews();
             builder.Services.AddSingleton<GameService>(sp => new GameService(new int[] { 12, 12 }, 10));
 
+            builder.Services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromHours(10);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -25,8 +32,8 @@ namespace Minesweeper
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
+            app.UseSession();
             app.UseRouting();
-
             app.UseAuthorization();
 
             app.MapControllerRoute(
