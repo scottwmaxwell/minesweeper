@@ -98,7 +98,6 @@ namespace Minesweeper.Services
 
                     if (reader.Read())
                     {
-                        Console.WriteLine(reader.GetString(3));
                         savedGame = new SavedGame
                         {
                             Id = reader.GetInt32(0),
