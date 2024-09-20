@@ -3,6 +3,8 @@ C# III Milestone
 
 This project will be using .NET with to create a web application to allow users to play minesweeper.
 
+<img src="assets/preview.png" width=290>
+
 ## Setup
 
 Clone this repository:
