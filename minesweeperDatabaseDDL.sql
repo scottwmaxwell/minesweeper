@@ -23,6 +23,15 @@ begin
     );
 end;
 
+if not exists (select * from sys.objects where object_id = OBJECT_ID(N'[dbo].[games]') and type in (N'U'))
+begin 
+    create table [dbo].[users] (
+        [id] INT PRIMARY KEY IDENTITY(1,1),
+        [date] DATETIME NOT NULL,
+        [game] VARCHAR(max) NOT NULL,
+    );
+end;
+
 -- Add some test data
 insert into users (firstName, lastName, sex, age, state, email, userName, password) values
 ('John', 'Doe', 'Male', 30, 'California', 'john.doe@example.com', 'johndoe', 'password123'),
