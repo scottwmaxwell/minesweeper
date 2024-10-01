@@ -13,6 +13,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="7.0.12" />
     <PackageReference Include="NLog" Version="5.3.4" />
+    <PackageReference Include="NLog.Config" Version="4.7.15" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
   </ItemGroup>
 

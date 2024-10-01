@@ -8,21 +8,23 @@ namespace Minesweeper.Controllers
     public class RegisterController : Controller
     {
         private readonly SecurityService _securityService;
+        private readonly Ilogger logger;
 
-        public RegisterController(SecurityService securityService)
+        public RegisterController(SecurityService securityService, Ilogger logger)
         {
             _securityService = securityService;
+            this.logger = logger;
         }
 
         public IActionResult Index()
         {
-            MyLogger.GetInstance().Info("Loading the Register Index page.");
+            logger.Info("Loading the Register Index page.");
             return View();
         }
 
         public IActionResult RegisterUser(UserModel user)
         {
-            MyLogger.GetInstance().Info("Processing user registration for: " + user.ToString());
+            logger.Info("Processing user registration for: " + user.ToString());
             ViewBag.message = _securityService.Save(user) ? "Successfully registered account for " + user.FirstName + " " + user.LastName : "Failed to register account";
             
             return View("RegisterSuccess");

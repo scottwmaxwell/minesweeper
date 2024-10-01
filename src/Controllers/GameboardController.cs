@@ -8,11 +8,13 @@ namespace Minesweeper.Controllers
     public class GameboardController : Controller
     {
         private readonly GameService gameService;
+        private readonly Ilogger logger;
 
         // Initialize service when gameboard is created
-        public GameboardController(GameService gameService)
+        public GameboardController(GameService gameService, Ilogger logger)
         {
             this.gameService = gameService;
+            this.logger = logger;
         }
 
         [HttpGet]
@@ -20,14 +22,14 @@ namespace Minesweeper.Controllers
         public IActionResult Index()
         {
             Console.WriteLine("Index");
-            MyLogger.GetInstance().Info("Loading the Gameboard Index page.");
+            logger.Info("Loading the Gameboard Index page.");
             this.gameService.SetGame();
             return View(gameService.Board);
         }
 
         public IActionResult HandleButtonClick(int Id)
         {
-            MyLogger.GetInstance().Info("Board cell " + Id + " was clicked.");
+            logger.Info("Board cell " + Id + " was clicked.");
             this.gameService.SetGame();
             gameService.UpdateGame(Id);
             return View("Index", gameService.Board);
@@ -35,7 +37,7 @@ namespace Minesweeper.Controllers
 
         public IActionResult UpdateBoard(int Id)
         {
-            MyLogger.GetInstance().Info("Updating board because cell " + Id + " was changed.");
+            logger.Info("Updating board because cell " + Id + " was changed.");
             gameService.UpdateGame(Id);
             ViewBag.gameStatus = gameService.GameStatus;
             return PartialView(gameService.Board);
@@ -43,20 +45,20 @@ namespace Minesweeper.Controllers
 
         public IActionResult UpdateStatus()
         {
-            MyLogger.GetInstance().Info("Updating game status.");
+            logger.Info("Updating game status.");
             return Json(gameService.GameStatus);
         }
 
         public IActionResult FlagCell(int Id)
         {
-            MyLogger.GetInstance().Info("Flagging cell " + Id + " .");
+            logger.Info("Flagging cell " + Id + " .");
             gameService.FlagCell(Id);
             return PartialView("UpdateBoard", gameService.Board);
         }
 
         public IActionResult SaveGame()
         {
-            MyLogger.GetInstance().Info("Saving game.");
+            logger.Info("Saving game.");
             int userId = int.Parse(HttpContext.Session.GetString("id"));
             gameService.SaveGame(userId);
             return Json("Game saved");
@@ -64,7 +66,7 @@ namespace Minesweeper.Controllers
 
         public IActionResult LoadSavedGame(string id)
         {
-            MyLogger.GetInstance().Info("Loading game.");
+            logger.Info("Loading game.");
             gameService.LoadGame(id);
             return PartialView("UpdateBoard", gameService.Board);
         }

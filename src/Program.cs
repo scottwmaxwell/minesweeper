@@ -1,4 +1,5 @@
 using Minesweeper.Services;
+using Minesweeper.Utility;
 
 namespace Minesweeper
 {
@@ -11,6 +12,7 @@ namespace Minesweeper
             // Add services to the container.
             builder.Services.AddControllersWithViews();
             builder.Services.AddSingleton<GameService>(sp => new GameService(new int[] { 12, 12 }, 10));
+            builder.Services.AddSingleton<Ilogger, MyLogger>(); // Register MyLogger in the DI Container
 
             // Register SecurityService for Dependency Injection
             builder.Services.AddScoped<SecurityService>();
