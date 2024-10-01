@@ -61,6 +61,18 @@ namespace Minesweeper.Models
             this.UserName = userName;
             this.Password = password;
         }
+
+        public override string ToString()
+        {
+            return "FirstName: " + FirstName + 
+                "LastName: " + LastName +
+                "Sex: " + Sex +
+                "Age: " + Age +
+                "State: " + State +
+                "Email: " + Email + 
+                "UserName: " + UserName +
+                "Password: ******";
+        }
     }
 
     public enum Gender

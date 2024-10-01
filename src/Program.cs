@@ -12,6 +12,10 @@ namespace Minesweeper
             builder.Services.AddControllersWithViews();
             builder.Services.AddSingleton<GameService>(sp => new GameService(new int[] { 12, 12 }, 10));
 
+            // Register SecurityService for Dependency Injection
+            builder.Services.AddScoped<SecurityService>();
+
+            // Add session services
             builder.Services.AddSession(options =>
             {
                 options.IdleTimeout = TimeSpan.FromHours(10);
